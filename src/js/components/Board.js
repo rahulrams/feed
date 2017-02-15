@@ -2,7 +2,10 @@ import React, {Component} from "react"
 import { connect } from "react-redux"
 
 import FeedTitle from "./FeedTitle"
-import FeedItem from "./FeedItem"
+import FeedItemBasic from "./FeedItemBasic"
+import FeedItemMin from "./FeedItemMin"
+import FeedItemThumbnail from "./FeedItemThumbnail"
+
 import FeedList from "./FeedList"
 
 import {fetchFeed} from "../actions/feedActions"
@@ -23,21 +26,31 @@ export default class Board extends Component {
     onSelectFeed(feed) {
         this.props.dispatch(fetchFeed( feed ));
     }
+
+    getTemplate(template) {
+        const components = {FeedItemBasic,FeedItemMin,FeedItemThumbnail};
+        return components[template];
+    }
     render() {
         const feed = this.props.feed;
-        return (<div class="">
-            <div class="col-xs-2">
-                <div class="row">
-                <FeedList feeds={feed.feeds} selectedFeed={feed.selectedFeed} onSelectFeed={this.onSelectFeed} />
-                </div>
+        const FeedItem = this.getTemplate(feed.selectedFeed.template);
+        return (<div class="flexbox">
+            <div class="col bookmarks">
+                <FeedList feeds={feed.feeds} selectedFeed={feed.selectedFeed.id} onSelectFeed={this.onSelectFeed} />
             </div>
-            <div className={`feed col-xs-10 clearfix`}>
-                <div class="row">
-                <FeedTitle info={feed.info} />
+            <div className={`feed col clearfix`}>
+                {feed.info ? <FeedTitle info={feed.info} />: null}
                 <div class={`feed-list ${feed.fetching ? "loading" : ""}`}>
-                    {feed.items.map(data => <FeedItem key={data.guid} data={data} />)}
+                    {feed.items ? feed.items.map(data => <FeedItem template={data.template} key={data.guid} data={data} />): null}
                 </div>
-                </div>
+                {feed.error ? 
+                    <div className="error-container">
+                        <div className="error-content">
+                            <h2>Feed not loading</h2>
+                            <h4 className="error">{feed.error}</h4>
+                        </div>
+                    </div>
+                :null}
             </div>
         </div>)
     }

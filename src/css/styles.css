@@ -1,37 +1,10 @@
-/*
- * Feed reader example
- *
- * Copyright (c) 2009 Luis Montero
- * BSD Revised License
- *
- * Date: 2009-10-17
- */
- 
-/*
-Colours:
-red: #C74C44
-dark red: #8C413A
-grey: #3F474C
-dark beige: #B5B095
-beige: #DBD5B6
-*/
- 
-html
-{
-    color: #F0F0F0;
-    /*background-color: #8C413A;*/
-    font-family: "Helvetica", sans-serif;
-}
-
 body
 {
     font-size: 12px;
-    /*margin: 10px 20% 30px 20%;*/
+    font-family: "Roboto", sans-serif;
 }
 
-div,
-ul,
-li
+div, ul, li
 {
     margin: 0;
     padding: 0;
@@ -47,23 +20,18 @@ li
     list-style: none;
 }
 
-h1,
-h2,
-h3
+h1, h2, h3
 {
     font-size: 100%;
     font-weight: normal;
+    font-family: "Roboto", sans-serif;
+    color: #AAAAAA;
 }
 
 h1
 {
-    color: #AAAAAA;
     font-size: 4em;
     line-height: 1.1em;
-    /*text-shadow: 1px 1px 0.3em #3F474C;
-    background-image: url(logo.png);
-    background-repeat: no-repeat;
-    padding: 16px 0 0 148px;*/
     margin: 0px;
     padding: 16px 0;
     text-align: center;
@@ -71,18 +39,14 @@ h1
 
 h2
 {
-    color: #AAAAAA;
     font-size: 2.6em;
-    /*text-shadow: 1px 1px #3F474C;*/
     padding: 0;
     margin: 0 0 25px 0;
 }
 
 h3
 {
-    color: #AAAAAA;
     font-size: 2em;
-    /*text-shadow: 1px 1px #3F474C;*/
     padding: 0;
     margin: 10px 0 15px 0;
 }
@@ -91,83 +55,6 @@ a
 {
     color: #999999;
     text-decoration: none;
-}
-
-ul.menu
-{
-    margin: 44px 0px 24px 0px;
-    padding: 0px;
-}
-ul.menu li
-{
-    display: inline;
-    margin: 0px 5px 0px 0px;
-    padding: 12px;
-    background-color: #3F474C;
-    border: 1px solid #B5B095;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    font-size: 1.2em;
-    text-shadow: 1px 1px #3F474C;
-}
-ul.menu li:hover
-{
-    background-color: #B5B095;
-    text-shadow: 1px 1px 0.2em #3F474C;
-}
-
-div#ajax-feed-wrapper
-{
-    padding: 20px;
-    overflow: hidden;
-    background-color: #C74C44;
-    border: 1px solid #B5B095;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-}
-
-.loading
-{
-    width: 36px;
-    height: 36px;
-    background-image: url(ajax-loader.gif);
-    background-repeat: no-repeat;
-    background-position: 20px 20px;
-}
-
-div.ajax-feed-item
-{
-    background-color: #8C413A;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-div.ajax-feed-item h3
-{
-    font-size: 1.8em;
-    text-shadow: 1px 1px 0.3em #3F474C;
-    padding: 0;
-    margin: 3px 0 15px 0;
-}
-
-div.ajax-feed-content-snippet
-{
-    margin: 3px 0px 10px 0px;
-    padding: 15px 5px 5px 5px;
-    border-top: 1px solid #C74C44;
-    text-shadow: 1px 1px #3F474C;
-}
-
-a.ajax-feed-readmore
-{
-    display: table-cell;
-    padding: 1px 5px;
-    border: 1px solid #DBD5B6;
-}
-
-a.ajax-feed-readmore:hover
-{
-    background-color: #B5B095;
 }
 
 /*****************************************************************/
@@ -183,9 +70,6 @@ a.ajax-feed-readmore:hover
     float: left;
     margin-right: 20px;
     height: 140px;
-}
-
-.feed {
 }
 
 .feed-list {
@@ -227,14 +111,61 @@ a.ajax-feed-readmore:hover
     padding: 4px 10px;
     text-align: left;
     border-bottom: 1px solid palevioletred;
+    color: white;
+}
+
+.feed-links a:focus,
+.feed-links a:visited,
+.feed-links a:active {
+    color: white;
+    text-decoration: none;
 }
 
 .feed-links a.selected {
     font-weight: bold;
-    color: red;
+    background: rgba(255, 255, 255, 0.15);
 }
 
 .feed-title {
     display: block;
     min-height: 84px;
+    text-align: center;
+}
+
+.error-container {
+    height: 300px;
+    width: 100%;
+    position: relative;
+    background: #FFEEEE;
+}
+
+.error-container .error-content {
+    text-align: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+}
+
+.flexbox {
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+}
+
+.flexbox .col {
+  flex: 1;
+}
+
+.flexbox .col.bookmarks {
+  flex-grow: 2;
+  background: #3A3B3F;
+  color: white;
+}
+
+.flexbox .col.feed {
+  flex-grow: 10;
+  padding-left: 10px;
 }

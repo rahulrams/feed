@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 
-const FeedItem = ({data}) => (
+const FeedItemThumbnail = ({data}) => (
     <div class="feed-item clearfix">
         {data.thumbnail ? <img src={data.thumbnail} /> : null}
         <div>
@@ -13,4 +13,4 @@ const FeedItem = ({data}) => (
     </div>
 )
 
-export default FeedItem
+export default FeedItemThumbnail
